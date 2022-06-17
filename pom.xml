@@ -4,8 +4,8 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.camel3</groupId>
-  <artifactId>parent</artifactId>
+  <groupId>com.jcamelinaction</groupId>
+  <artifactId>jnCamel3Parent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Camel 3 in Action 2</name>
@@ -31,89 +31,444 @@
   </developers>
 
   <modules>
-    <module>jn0</module>
-    <module>chapter2</module>
+    <module>jchap01</module>
+    <module>jchap01</module>
   </modules>
 
+  <scm>
+    <url>https://github.com/jnynhj/jnCamel3InAction.git</url>
+  </scm>
+
   <properties>
+    <activemq-version>5.17.1</activemq-version>
+    <activemq-karaf-version>5.13.5</activemq-karaf-version>
+
+    <!-- jnUpd: Use Camel 3 -->
+    <camel-version>3.17.0</camel-version>
+
+    <cxf-version>3.2.4</cxf-version>
+    <hawtio-version>2.15.0</hawtio-version>
+    <commons-dbcp2-version>2.1.1</commons-dbcp2-version>
+    <deltaspike-version>1.7.2</deltaspike-version>
+    <hystrix-version>1.5.12</hystrix-version>
+    <jackson-version>2.8.10</jackson-version>
+    <javax-mail-version>1.5.5</javax-mail-version>
+    <jolokia-version>1.7.0</jolokia-version>
+    <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
+    <jetty9-plugin-version>9.2.21.v20170120</jetty9-plugin-version>
+    <junit-version>4.12</junit-version>
+    <karaf-version>4.1.5</karaf-version>
+    <log4j-version>2.0.0-alpha7</log4j-version>
+    <maven-bundle-plugin-version>3.3.0</maven-bundle-plugin-version>
+    <mock-javamail-version>1.9</mock-javamail-version>
+    <slf4j-version>1.7.21</slf4j-version>
+    <spring-version>5.3.20</spring-version>
+    <spring-boot-version>1.5.12.RELEASE</spring-boot-version>
+    <swagger-version>1.5.20</swagger-version>
+    <xbean-version>4.21</xbean-version>
+    <vertx-version>3.5.0</vertx-version>
+    <weld-version>2.4.7.Final</weld-version>
+    <wildfly-swarm-version>2017.11.0</wildfly-swarm-version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+
+    <!-- Below are jn added -->
     <log4j2-version>2.13.3</log4j2-version>
+    <jdk.version>11</jdk.version>
+
+    <!-- These two are here only to prevent the versions for the Apache parent pom from leaking-->
+    <maven.compiler.source>${jdk.version}</maven.compiler.source>
+    <maven.compiler.target>${jdk.version}</maven.compiler.target>
   </properties>
 
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <pluginManagement>
+      <plugins>
+        <!-- The Compiler Plugin is used to compile the sources of your project. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.10.1</version>
+          <configuration>
+            <release>11</release>
+            <source>${jdk.version}</source>
+            <target>${jdk.version}</target>
+            <maxmem>512M</maxmem>
+            <showDeprecation>true</showDeprecation>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+
+        <!-- Running the Clean Plugin in the initialize phase every time the project is built -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>activemq-data</directory>
+              </fileset>
+            </filesets>
+          </configuration>
+          <executions>
+            <execution>
+              <id>auto-clean</id>
+              <phase>initialize</phase>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+
+        <!-- Retired -->
+        <!-- plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-eclipse-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+            <downloadSources>true</downloadSources>
+            <downloadJavadocs>false</downloadJavadocs>
+          </configuration>
+        </plugin> -->
+
+        <!-- This plugin is used to retrieve JARs of resources from
+            remote repositories, process those resources, and
+            incorporate them into JARs you build with Maven. -->
+
+        <plugin>
+        <artifactId>maven-remote-resources-plugin</artifactId>
+        <version>1.7.0</version>
+      </plugin>
+
+        <!-- This plugin provides the capability to build jars.
+            Usually there is no need to mentioned the 'maven-jar-plugin'
+            explicit cause it's bound to the Maven Build Life Cycle. -->
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+      </plugin>
+
+        <!-- Dependency manipulation (copy, unpack) and analysis. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>2.15</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${maven-bundle-plugin-version}</version>
+        </plugin>
+
+        <!-- Allows the example to be run via 'mvn camel:run' -->
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-maven-plugin</artifactId>
+          <version>${camel-version}</version>
+        </plugin>
+
+        <!-- help package Camel components and plugins. Cannot find doc -->
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-package-maven-plugin</artifactId>
+          <version>${camel-version}</version>
+        </plugin>
+
+        <!-- generate the API mapping classes, which implement the mapping
+          between endpoint URIs and API method invocations. -->
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-api-component-maven-plugin</artifactId>
+          <version>3.17.0</version>
+        </plugin>
+
+        <!-- The plugin provides 2 goals (exec:exec and exec:java) to help execute system and Java programs. -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+        <!-- This plugin contains various small independent goals(build-help:*) to assist with the Maven build lifecycle. -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+        <!-- Hawtio offers a number of Maven plugins, so that users can bootup Maven projects and have Hawtio embedded in
+          the running JVM. Maven goals: run, spring, spring-boot, camel, test etc.
+          Run Camel examples with Hawtio embedded as a web console: mvn io.hawt:hawtio-maven-plugin:2.x.x:camel
+          or mvn hawtio:camel
+          -->
+        <plugin>
+          <groupId>io.hawt</groupId>
+          <artifactId>hawtio-maven-plugin</artifactId>
+          <version>${hawtio-version}</version>
+        </plugin>
+
+        <!-- The wildfly-maven-plugin is used to deploy, redeploy, undeploy or run your
+          application. You can also deploy or undeploy artifacts, such as JDBC drivers,
+          and add or remove resources. There is also the ability to execute CLI
+          commands. Goals: wildfly:* -->
+        <plugin>
+          <groupId>org.wildfly.plugins</groupId>
+          <artifactId>wildfly-maven-plugin</artifactId>
+          <version>3.0.0.Final</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-bundle-plugin</artifactId>
+          <version>${camel.version}</version>
+          <configuration>
+          </configuration>
+          <executions>
+            <execution>
+              <id>bundle-manifest</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>manifest</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M6</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.junit.jupiter</groupId>
+              <artifactId>junit-jupiter-engine</artifactId>
+              <version>5.6.2</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- When false it makes tests run using the standard classloader delegation instead of the default Maven isolated classloader. -->
+          <childDelegation>false</childDelegation>
+          <!-- Option to generate a file test report or just output the test report to the console. -->
+          <useFile>true</useFile>
+          <failIfNoTests>false</failIfNoTests>
+          <!-- lets re-run the failed test one more time, just to be sure -->
+          <rerunFailingTestsCount>2</rerunFailingTestsCount>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!--
+    In fact, we usually define the dependencyManagement tag once, preceding the dependencies tag.
+    This is used in order to declare the dependencies in the POM file. This declaration is just
+    an announcement, and it doesn't really add the dependency to the project.
+    1. We define the version in the dependencyManagement tag, and then we can use the mentioned
+       version without specifying it in the next dependencies tag.
+    2. dependencyManagement is just a declaration, and it does not really add a dependency.
+       The dependencies defined in it must be later used by dependencies tag. It does not add
+       the dependency library into any scope. It is just a declaration for the future dependencies tag.
+  -->
   <dependencyManagement>
     <dependencies>
       <!-- Camel BOM -->
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-bom</artifactId>
-        <version>3.17.0</version>
+        <version>${camel.version}</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>spi-annotations</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
+      <!-- ActiveMQ -->
+      <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-all</artifactId>
+        <version>${activemq-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-camel</artifactId>
+        <version>${activemq-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-pool</artifactId>
+        <version>${activemq-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.xbean</groupId>
+        <artifactId>xbean-spring</artifactId>
+        <version>${xbean-version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- Logging -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j-version}</version>
+      </dependency>
+
+      <!-- testing junit5 -->
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-test-junit5</artifactId>
+        <version>${camel-version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.6.2</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Jolokia -->
+      <dependency>
+        <groupId>org.jolokia</groupId>
+        <artifactId>jolokia-core</artifactId>
+        <version>${jolokia-version}</version>
+      </dependency>
+
+      <!-- Spring -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jms</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring-version}</version>
+      </dependency>
+
+      <!-- Java FTP server -->
+      <dependency>
+        <groupId>org.apache.ftpserver</groupId>
+        <artifactId>ftpserver-core</artifactId>
+        <version>1.2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.ftpserver</groupId>
+        <artifactId>ftplet-api</artifactId>
+        <version>1.2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.mina</groupId>
+        <artifactId>mina-core</artifactId>
+        <version>3.0.0-M2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>
-
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-main</artifactId>
-    </dependency>
-
-    <!-- logging -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <scope>runtime</scope>
-      <version>${log4j2-version}</version>
-    </dependency>
-
-    <!-- testing -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <defaultGoal>install</defaultGoal>
-
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <configuration>
-          <release>11</release>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-
-      <!-- Allows the example to be run via 'mvn camel:run' -->
-      <plugin>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
-        <version>3.17.0</version>
-        <configuration>
-          <logClasspath>true</logClasspath>
-          <mainClass>com.camel3.MainApp</mainClass>
-        </configuration>
-      </plugin>
-
-    </plugins>
-  </build>
+  <!-- JN 7/6/22 -->
 
 </project>
