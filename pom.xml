@@ -31,7 +31,7 @@
   </developers>
 
   <modules>
-    <module>jchap01</module>
+    <module>chapter01</module>
   </modules>
 
   <scm>
@@ -60,7 +60,7 @@
     <log4j-version>2.0.0-alpha7</log4j-version>
     <maven-bundle-plugin-version>3.3.0</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
-    <slf4j-version>1.7.21</slf4j-version>
+    <slf4j-version>2.0.0-alpha7</slf4j-version>
     <spring-version>5.3.20</spring-version>
     <spring-boot-version>1.5.12.RELEASE</spring-boot-version>
     <swagger-version>1.5.20</swagger-version>
@@ -308,7 +308,7 @@
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-bom</artifactId>
-        <version>${camel.version}</version>
+        <version>${camel-version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
