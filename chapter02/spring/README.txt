@@ -1,2 +1,2 @@
-Run command:
-    mvn compile exec:java -Dexec.mainClass=camelinaction.GreetMeMain
+# Run command:
+#    mvn compile exec:java -Dexec.mainClass=camelinaction.GreetMeMain
