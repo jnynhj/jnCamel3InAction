@@ -30,6 +30,7 @@ public class OrderRouterTest extends CamelTestSupport {
         getMockEndpoint("mock:xml").expectedMessageCount(1);
         getMockEndpoint("mock:csv").expectedMessageCount(2);
         getMockEndpoint("mock:bad").expectedMessageCount(1);
+        getMockEndpoint("mock:continued").expectedMessageCount(3);
 
         assertMockEndpointsSatisfied();
     }
@@ -50,7 +51,12 @@ public class OrderRouterTest extends CamelTestSupport {
                         .when(header("CamelFileName").regex("^.*(csv|csl)$"))
                             .to("jms:csvOrders")
                         .otherwise()
-                            .to("jms:badOrders");
+                            .to("jms:badOrders").stop()
+                        // closed choice block using the end method
+                        .end()
+                        // each destination with the choice except the one with stop(), the message will be routed
+                        // to the continuedProcessing queue as well.
+                        .to("jms:continuedProcessing");
                 
                 // test that our route is working
                 from("jms:xmlOrders")
@@ -64,6 +70,11 @@ public class OrderRouterTest extends CamelTestSupport {
                 from("jms:badOrders")
                         .log("Received bad order: ${header.CamelFileName}")
                         .to("mock:bad");
+
+                from("jms:continuedProcessing")
+                        .log("Received continued order: ${header.CamelFileName}")
+                        .to("mock:continued");
+
             }
         };
     }
