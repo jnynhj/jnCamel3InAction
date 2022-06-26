@@ -7,5 +7,8 @@ OrderRouterTest:
   * To run
         mvn test -Dtest=OrderRouterTest
 
+OrderRouterWithMulticastSOETest:
+  * Stopping the multicast on exception
+
 To run all tests:
     mvn test
