@@ -27,7 +27,9 @@ public class OrderRouterTest extends CamelTestSupport {
     
     @Test
     public void testPlacingOrders() throws Exception {
-        getMockEndpoint("mock:xml").expectedMessageCount(1);
+//        getMockEndpoint("mock:xml").expectedMessageCount(1);
+        getMockEndpoint("mock:accounting").expectedMessageCount(1);
+        getMockEndpoint("mock:production").expectedMessageCount(1);
         getMockEndpoint("mock:csv").expectedMessageCount(2);
         getMockEndpoint("mock:bad").expectedMessageCount(1);
         getMockEndpoint("mock:continued").expectedMessageCount(4);
@@ -60,10 +62,24 @@ public class OrderRouterTest extends CamelTestSupport {
                 
                 // test that our route is working
                 from("jms:xmlOrders")
+                    // The XPath expression will evaluate true for orders that don’t have the test attribute.
                     .filter(xpath("/order[not(@test)]"))
                     .log("Received XML order: ${header.CamelFileName}")
-                    .to("mock:xml");                
-                
+                    // By default, the multicast sends message copies sequentially.
+                    // Sending messages in parallel using the multicast involves only one extra DSL method:
+                    // parallelProcessing.
+                    .multicast().parallelProcessing()
+                    .to("jms:accounting", "jms:production");
+//                    .to("mock:xml");
+
+                from("jms:accounting")
+                        .log("Accounting received order: ${header.CamelFileName}")
+                        .to("mock:accounting");
+
+                from("jms:production")
+                        .log("Production received order: ${header.CamelFileName}")
+                        .to("mock:production");
+
                 from("jms:csvOrders")
                     .log("Received CSV order: ${header.CamelFileName}")
                     .to("mock:csv");
