@@ -16,6 +16,7 @@
         <module>file-jms</module>
         <module>spring</module>
         <module>spring-file-jms</module>
+        <module>cbr</module>
     </modules>
 
 
