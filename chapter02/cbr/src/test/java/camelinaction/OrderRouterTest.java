@@ -30,7 +30,7 @@ public class OrderRouterTest extends CamelTestSupport {
         getMockEndpoint("mock:xml").expectedMessageCount(1);
         getMockEndpoint("mock:csv").expectedMessageCount(2);
         getMockEndpoint("mock:bad").expectedMessageCount(1);
-        getMockEndpoint("mock:continued").expectedMessageCount(3);
+        getMockEndpoint("mock:continued").expectedMessageCount(4);
 
         assertMockEndpointsSatisfied();
     }
@@ -60,6 +60,7 @@ public class OrderRouterTest extends CamelTestSupport {
                 
                 // test that our route is working
                 from("jms:xmlOrders")
+                    .filter(xpath("/order[not(@test)]"))
                     .log("Received XML order: ${header.CamelFileName}")
                     .to("mock:xml");                
                 
