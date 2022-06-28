@@ -31,6 +31,11 @@ PurchaseOrderBindyTest, PurchaseOrderUnmarshalBindyTest: P97
   * Dependency: camel-bindy
   * DSL: marshal(), unmarshall(), bindy()
 
+PurchaseOrderJSONTest: p98
+  * 3.4.4 Using Camel’s JSON data format
+  * Dependency: camel-support, camel-jackson
+  * DSL: bean(), marshal(), json()
+
 To run a test class:
         mvn test -Dtest=<testClassName>
 
