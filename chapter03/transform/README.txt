@@ -1,10 +1,10 @@
 OrderToCsvProcessorTest: P80
   * Data format transformation using Processor interface
-    - DSL: process()
+  *  DSL: process()
 
 OrderToCsvBeanTest: P81
    * Data format transformation using POJO class
-     - DSL: bean()
+   * DSL: bean()
 
 TransformTest: P82
   * Use transform() DSL with regex expression
@@ -12,11 +12,24 @@ TransformTest: P82
 
 TransformExpressionTest: P82
   * Use transform() DSL with inline Camel Expression that allows you to use Java code in its evaluate() method.
-    - DSL: tranform(new Expression())
+  * DSL: tranform(new Expression())
 
 PurchaseOrderJaxbTest: P91
   * Transforming using JAXB
-    - DSL: marshal(), unmarshal()
+  * Dependency: camel-jaxb
+  * DSL: marshal(), unmarshal()
+
+PurchaseOrderCsvTest: P94
+  * The camel-csv data format is capable of transforming to and from CSV format.
+  * consume CSV files, split out each row, and send it to a JMS queue.
+  * Dependency: camel-csv
+  * DSL: unmarshal(), csv(), split()
+
+PurchaseOrderBindyTest, PurchaseOrderUnmarshalBindyTest: P97
+  * Using Camel’s Bindy data format. By annotating the model object with camel-bindy annotations, you can easily
+    transform messages between CSV and Java model objects.
+  * Dependency: camel-bindy
+  * DSL: marshal(), unmarshall(), bindy()
 
 To run a test class:
         mvn test -Dtest=<testClassName>
