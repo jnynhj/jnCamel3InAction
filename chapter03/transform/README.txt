@@ -36,6 +36,11 @@ PurchaseOrderJSONTest: p98
   * Dependency: camel-support, camel-jackson
   * DSL: bean(), marshal(), json()
 
+PurchaseOrderVelocityTest: p100
+  * Transform using Apache Velocity
+  * Dependency: camel-velocity
+  * URL: velocity://...
+
 To run a test class:
         mvn test -Dtest=<testClassName>
 
