@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>transform</module>
+        <module>converter</module>
     </modules>
 
 
