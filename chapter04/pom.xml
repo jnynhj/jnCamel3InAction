@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>bean</module>
+        <module>predicate</module>
+        <module>expression</module>
     </modules>
 
 
