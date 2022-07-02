@@ -28,6 +28,15 @@ Others: p157
         mvn test -Dtest=AggregateTimeoutThreadpoolTest
         mvn test -Dtest=SpringAggregateTimeoutThreadpoolTest
 
+AggregatePojoTest: P150
+  *  Using POJO for the Aggregator EIP.
+  *  EIP: Aggregator EIP
+  *  DSL: aggregate(), header(), completionSize(), AggregationStrategies.bean()
+  *  Annotation: N/A
+  *  Dependency: camel-core
+  *  Run: mvn test -Dtest=AggregatePojoTest
+
+
 To run a test class:
         mvn test -Dtest=<testClassName>
 
