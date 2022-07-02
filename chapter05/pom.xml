@@ -14,6 +14,7 @@
     <modules>
         <module>aggregator</module>
         <module>splitter</module>
+        <module>routingslip</module>
     </modules>
 
 
