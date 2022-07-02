@@ -38,6 +38,8 @@ RoutingSlipTest: p180
 RoutingSlipBeanTest: p180
   *  Use beans and annotations.
      The @RoutingSlip annotation allows you to turn a regular bean method into the Routing Slip EIP.
+     WARNING When using @RoutingSlip, it’s important to not use routingSlip in the DSL at the same
+     time. By doing this, Camel will double up using the Routing Slip EIP, which isn’t the intention.
   *  EIP: Routing Slip EIP
   *  DSL: routingSlip().method()
   *  Annotation: N/A

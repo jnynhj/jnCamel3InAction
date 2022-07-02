@@ -15,6 +15,7 @@
         <module>aggregator</module>
         <module>splitter</module>
         <module>routingslip</module>
+        <module>dynamicrouter</module>
     </modules>
 
 
