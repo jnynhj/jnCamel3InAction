@@ -28,13 +28,31 @@ Others: p157
         mvn test -Dtest=AggregateTimeoutThreadpoolTest
         mvn test -Dtest=SpringAggregateTimeoutThreadpoolTest
 
-AggregatePojoTest: P150
+AggregatePojoTest: P159
   *  Using POJO for the Aggregator EIP.
   *  EIP: Aggregator EIP
   *  DSL: aggregate(), header(), completionSize(), AggregationStrategies.bean()
   *  Annotation: N/A
   *  Dependency: camel-core
   *  Run: mvn test -Dtest=AggregatePojoTest
+
+AggregateABCLevelDBTest: P1161
+  *  Using LevelDB for the Aggregator EIP.
+  *  EIP: Aggregator EIP
+  *  DSL: aggregate(), completionSize(), AggregationRepository()
+  *  Annotation: N/A
+  *  Dependency: camel-leveldb
+  *  Run: mvn test -Dtest=AggregateABCLevelDBTest
+
+AggregateABCRecoverTest: P1164
+  *  Using recovery for the Aggregator EIP.
+  *  EIP: Aggregator EIP
+  *  DSL: aggregate(), completionSize(), AggregationRepository()
+          header(Exchange.REDELIVERED), header(Exchange.REDELIVERY_COUNTER)
+          LevelDBAggregationRepository(): RecoverableAggregationRepository()
+  *  Annotation: N/A
+  *  Dependency: camel-leveldb
+  *  Run: mvn test -Dtest=AggregateABCRecoverTest
 
 
 To run a test class:
