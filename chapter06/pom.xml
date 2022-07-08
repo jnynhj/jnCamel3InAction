@@ -13,6 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>file</module>
+        <module>jms</module>
+        <module>netty</module>
+        <module>jdbc</module>
     </modules>
 
 
