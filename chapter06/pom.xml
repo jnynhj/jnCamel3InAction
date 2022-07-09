@@ -17,6 +17,7 @@
         <module>netty</module>
         <module>jdbc</module>
         <module>jpa</module>
+        <module>seda</module>
     </modules>
 
 
