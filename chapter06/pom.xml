@@ -19,6 +19,7 @@
         <module>jpa</module>
         <module>seda</module>
         <module>scheduler</module>
+        <module>mail</module>
     </modules>
 
 
