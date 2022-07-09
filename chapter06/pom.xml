@@ -16,6 +16,7 @@
         <module>jms</module>
         <module>netty</module>
         <module>jdbc</module>
+        <module>jpa</module>
     </modules>
 
 

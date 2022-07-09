@@ -1,0 +1,48 @@
+----------------------------------------------------------------
+Sat Jul 09 13:50:52 AEST 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0181-e114-e868-00000cfb8830 
+on database directory memory:C:\jning\Labs\jnCamelInAction\chapter06\jpa\order with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6e5e91e4 
+Loaded from file:/C:/Users/jni02/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11.0.2+9
+user.dir=C:\jning\Labs\jnCamelInAction\chapter06\jpa
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Jul 09 13:51:02 AEST 2022:
+Shutting down instance a816c00e-0181-e114-e868-00000cfb8830 on database directory memory:C:\jning\Labs\jnCamelInAction\chapter06\jpa\order with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6e5e91e4 
+----------------------------------------------------------------
+Sat Jul 09 13:51:03 AEST 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 71b840bf-0181-e114-e868-00000cfb8830 
+on database directory memory:C:\jning\Labs\jnCamelInAction\chapter06\jpa\order with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6e5e91e4 
+Loaded from file:/C:/Users/jni02/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11.0.2+9
+user.dir=C:\jning\Labs\jnCamelInAction\chapter06\jpa
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Jul 09 13:51:12 AEST 2022:
+Shutting down instance 71b840bf-0181-e114-e868-00000cfb8830 on database directory memory:C:\jning\Labs\jnCamelInAction\chapter06\jpa\order with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6e5e91e4 
+----------------------------------------------------------------
+Sat Jul 09 13:51:13 AEST 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance 52da80c5-0181-e114-e868-00000cfb8830 
+on database directory memory:C:\jning\Labs\jnCamelInAction\chapter06\jpa\order with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6e5e91e4 
+Loaded from file:/C:/Users/jni02/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=11.0.2+9
+user.dir=C:\jning\Labs\jnCamelInAction\chapter06\jpa
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Jul 09 13:51:22 AEST 2022:
+Shutting down instance 52da80c5-0181-e114-e868-00000cfb8830 on database directory memory:C:\jning\Labs\jnCamelInAction\chapter06\jpa\order with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@6e5e91e4 
