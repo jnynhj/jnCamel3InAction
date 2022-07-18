@@ -13,6 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>standalone</module>
+        <module>springboot</module>
+        <module>springboot-rest-camel</module>
+        <module>springbootHello</module>
     </modules>
 
 

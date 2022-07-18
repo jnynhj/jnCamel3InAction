@@ -82,6 +82,7 @@
     <!-- Below are jn added -->
     <log4j2-version>2.13.3</log4j2-version>
     <jdk.version>11</jdk.version>
+    <java.version>11</java.version>
 
     <!-- These two are here only to prevent the versions for the Apache parent pom from leaking-->
     <maven.compiler.source>${jdk.version}</maven.compiler.source>
