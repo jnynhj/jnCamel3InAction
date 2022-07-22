@@ -13,7 +13,7 @@ HelloRestController: P258 (Run OK but Error Page when access localhost:8080/spri
 
 
 To run:
-    mvn camel:run
+    mvn spring-boot:run
 
 To run a test class:
         mvn test -Dtest=<testClassName>

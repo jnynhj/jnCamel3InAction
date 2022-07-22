@@ -3,21 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>jnCamel3Parent</artifactId>
+        <artifactId>chapter07</artifactId>
         <groupId>com.jcamelinaction</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chapter07</artifactId>
+    <artifactId>chapter07-prototype</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>standalone</module>
-        <module>springboot</module>
-        <module>springboot-rest-camel</module>
-        <module>springbootHello</module>
-        <module>springboot-camel</module>
-        <module>prototype</module>
+        <module>recommend</module>
+        <module>cart-camel</module>
+        <module>cart-camel-springboot</module>
     </modules>
 
 
