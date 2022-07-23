@@ -1,7 +1,7 @@
 package camelinaction;
 
-import org.apache.camel.Configuration;
 import org.apache.camel.component.properties.PropertiesComponent;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Configures the application.

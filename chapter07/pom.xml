@@ -18,6 +18,9 @@
         <module>springbootHello</module>
         <module>springboot-camel</module>
         <module>prototype</module>
+        <module>chapter07-springboot-camel-hello2</module>
+        <module>springboot-rest-camel-hello2</module>
+        <module>springboot-camel-postgresql-rest</module>
     </modules>
 
 
