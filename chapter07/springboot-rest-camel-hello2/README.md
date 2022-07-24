@@ -1,8 +1,6 @@
-# Spring-boot-camel-postgresql
+Copy from:
+    https://medium.com/@naskavinda/building-spring-boot-rest-api-using-apache-camel-and-postgresql-ead210c92503
 
-https://medium.com/@naskavinda/building-spring-boot-rest-api-using-apache-camel-and-postgresql-ead210c92503
-
-Original GIT: https://github.com/naskavinda/Spring-boot-camel-postgresql
 
 Note:
     Check   http://localhost:8080/rest/hello
