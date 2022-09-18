@@ -14,6 +14,7 @@ HelloRoute: P260 (Run OK but Error Page when access due to geocoder access permi
   *  Dependency: camel-spring-boot-starter, camel-servlet-starter, camel-geocoder-starter
   *  URL: http://localhost:8080/camel/hello
      Camel by default will use context-path /camel/*, which can be reconfigured in the application.properties.
+  *  Actuator URL: http://localhost:8080/actuator/health
 
 To run:
     mvn spring-boot:run

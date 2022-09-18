@@ -25,7 +25,8 @@ public class HelloRoute extends RouteBuilder {
             .to("direct:hello");
 
         from("direct:hello")
-            .to("geocoder:address:current")
-            .transform().simple("Hello from Spring Boot and Camel. We are at: ${body}");
+//            .to("geocoder:address:current")
+//            .transform().simple("Hello from Spring Boot and Camel. We are at: ${body}");
+            .transform().simple("Hello from Spring Boot and Camel.");
     }
 }
