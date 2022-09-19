@@ -17,6 +17,8 @@
         <module>cart-camel-springboot</module>
         <module>inventory-camel</module>
         <module>inventory</module>
+        <module>rating-camel-springboot</module>
+        <module>rules-camel-springboot</module>
     </modules>
 
 
