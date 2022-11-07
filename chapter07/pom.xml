@@ -21,6 +21,8 @@
         <module>chapter07-springboot-camel-hello2</module>
         <module>springboot-rest-camel-hello2</module>
         <module>springboot-camel-postgresql-rest</module>
+        <module>hystrix</module>
+        <module>hystrix-camel</module>
     </modules>
 
 

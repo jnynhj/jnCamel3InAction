@@ -14,6 +14,12 @@ public class InventoryRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+
+        // 7.4.1 Retry Pattern (P277)
+        errorHandler(defaultErrorHandler()
+            .maximumRedeliveries(5)
+            .redeliveryDelay(2000));
+
         from("direct:inventory")
             // call the legacy system using JMS
             .to("jms:queue:inventory")

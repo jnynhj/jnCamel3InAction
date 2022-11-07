@@ -55,7 +55,7 @@
     <hawtio-version>2.15.0</hawtio-version>
     <commons-dbcp2-version>2.1.1</commons-dbcp2-version>
     <deltaspike-version>1.7.2</deltaspike-version>
-    <hystrix-version>1.5.12</hystrix-version>
+    <hystrix-version>1.5.18</hystrix-version>
     <jackson-version>2.8.10</jackson-version>
     <javax-mail-version>1.6.2</javax-mail-version>
     <jolokia-version>1.7.0</jolokia-version>
